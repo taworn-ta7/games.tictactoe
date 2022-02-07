@@ -1,0 +1,44 @@
+{
+	"app": "Tic-Tac-Toe",
+	"common": {
+		"close": "Close",
+		"ok": "OK",
+		"cancel": "Cancel",
+		"yes": "Yes",
+		"no": "No",
+		"retry": "Retry"
+	},
+	"switchLocale": {
+		"english": "English",
+		"thai": "ไทย"
+	},
+	"question": {
+		"areYouSureToExit": "Are you sure to exit this game?"
+	},
+	"messageBox": {
+		"info": {
+			"title": "Information"
+		},
+		"warning": {
+			"title": "Warning"
+		},
+		"error": {
+			"title": "Error"
+		},
+		"question": {
+			"title": "Question"
+		}
+	},
+	"startPage": {
+		"boardSize": "Board Size",
+		"playWithHuman": "Play with Human",
+		"playWithComputer": "Play with Computer"
+	},
+	"boardPage": {
+		"o": "O",
+		"x": "X",
+		"turn": "$name Turn",
+		"win": "$name is Win :)",
+		"draw": "Draw!"
+	}
+}

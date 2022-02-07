@@ -1,0 +1,19 @@
+.board {
+    border-collapse: collapse;
+    border: 1px solid gray;
+}
+
+.boardRow {
+    border-collapse: collapse;
+    border: 1px solid gray;
+}
+
+.boardCell {
+    border-collapse: collapse;
+    border: 1px solid gray;
+    padding: 24px 32px;
+    vertical-align: middle;
+    text-align: center;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+    font-size: 150%;
+}

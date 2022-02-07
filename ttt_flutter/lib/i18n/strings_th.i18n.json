@@ -1,0 +1,44 @@
+{
+	"app": "โอ-เอ็กซ์",
+	"common": {
+		"close": "ปิด",
+		"ok": "ตกลง",
+		"cancel": "ยกเลิก",
+		"yes": "ใช่",
+		"no": "ไม่ใช่",
+		"retry": "ลองใหม่"
+	},
+	"switchLocale": {
+		"english": "English",
+		"thai": "ไทย"
+	},
+	"question": {
+		"areYouSureToExit": "คุณแน่ใจที่จะออกจากเกมนี้หรือไม่?"
+	},
+	"messageBox": {
+		"info": {
+			"title": "ข้อมูลข่าวสาร"
+		},
+		"warning": {
+			"title": "แจ้งเตือน"
+		},
+		"error": {
+			"title": "เกิดข้อผิดพลาด"
+		},
+		"question": {
+			"title": "คำถาม"
+		}
+	},
+	"startPage": {
+		"boardSize": "ขนาดกระดาน",
+		"playWithHuman": "เล่นกับคน",
+		"playWithComputer": "เล่นกับคอมพิวเตอร์"
+	},
+	"boardPage": {
+		"o": "โอ",
+		"x": "เอ็กซ์",
+		"turn": "ตา $name",
+		"win": "$name เป็นผู้ชนะ :)",
+		"draw": "เสมอ!"
+	}
+}
