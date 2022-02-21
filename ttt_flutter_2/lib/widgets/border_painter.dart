@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../game/game.dart' as game;
-import '../constants.dart';
 
 class BorderPainter extends CustomPainter {
   final game.Board board;

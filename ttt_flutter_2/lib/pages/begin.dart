@@ -44,7 +44,7 @@ class _BeginState extends State<BeginPage> {
     final tr = t.beginPage;
     return Scaffold(
       appBar: AppBar(
-        leading: Image.asset('assets/app.png'),
+        leading: const Icon(Icons.videogame_asset),
         title: Text(tr.title),
         actions: [
           // Thai language
@@ -87,7 +87,7 @@ class _BeginState extends State<BeginPage> {
 
                 // begin with player
                 ElevatedButton.icon(
-                  icon: const Icon(Icons.star),
+                  icon: const Icon(Icons.gamepad),
                   label: Styles.buttonPadding(Text(tr.playerBegin)),
                   onPressed: () {
                     _begin();
@@ -97,7 +97,7 @@ class _BeginState extends State<BeginPage> {
 
                 // begin with computer
                 ElevatedButton.icon(
-                  icon: const Icon(Icons.star),
+                  icon: const Icon(Icons.casino),
                   label: Styles.buttonPadding(Text(tr.computerBegin)),
                   onPressed: () {
                     _begin(computerBegin: true);

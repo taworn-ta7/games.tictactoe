@@ -1,6 +1,5 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import '../constants.dart';
 
 class TitlePainter extends CustomPainter {
   @override
@@ -13,13 +12,13 @@ class TitlePainter extends CustomPainter {
     double yh = y0 + (size.height / 2);
 
     final paint = Paint()
-      ..strokeWidth = 8
+      ..strokeWidth = 16
       ..strokeCap = StrokeCap.round
       ..color = Colors.grey;
     canvas.drawLine(Offset(xh, y0), Offset(xh, y1), paint);
     canvas.drawLine(Offset(x0, yh), Offset(x1, yh), paint);
 
-    const d = 8;
+    const d = 24;
     _paintO(
       canvas,
       Offset(x0 + d, y0 + d),
@@ -40,7 +39,7 @@ class TitlePainter extends CustomPainter {
     double yc = p0.dy + yr;
 
     final paint = Paint()
-      ..strokeWidth = 8
+      ..strokeWidth = 16
       ..strokeCap = StrokeCap.round
       ..style = PaintingStyle.stroke
       ..color = Colors.blue;
@@ -49,7 +48,7 @@ class TitlePainter extends CustomPainter {
 
   void _paintX(Canvas canvas, Offset p0, Offset p1) {
     final paint = Paint()
-      ..strokeWidth = 8
+      ..strokeWidth = 16
       ..strokeCap = StrokeCap.round
       ..color = Colors.red;
     canvas.drawLine(p0, p1, paint);

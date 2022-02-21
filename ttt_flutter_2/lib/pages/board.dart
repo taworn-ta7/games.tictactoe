@@ -125,10 +125,10 @@ class _BoardState extends State<BoardPage> {
   Widget _buildButton(BuildContext context, int index) {
     return Container(
       constraints: const BoxConstraints(
-        minWidth: 160,
-        minHeight: 160,
-        maxWidth: 250,
-        maxHeight: 250,
+        minWidth: 100,
+        minHeight: 100,
+        maxWidth: 200,
+        maxHeight: 200,
       ),
       child: CustomPaint(
         painter: BorderPainter(
@@ -176,7 +176,13 @@ class _BoardState extends State<BoardPage> {
     }
   }
 
-  // ----------------------------------------------------------------------
+  Future<void> handleAi() async {
+    int move = await game.computerRandom(widget.board);
+    setState(() {
+      widget.board.put(move);
+      _status = getStatusString();
+    });
+  }
 
   void putMarker(BuildContext context, int index) {
     setState(() {
@@ -189,13 +195,7 @@ class _BoardState extends State<BoardPage> {
     }
   }
 
-  Future<void> handleAi() async {
-    int move = await game.computerRandom(widget.board);
-    setState(() {
-      widget.board.put(move);
-      _status = getStatusString();
-    });
-  }
+  // ----------------------------------------------------------------------
 
   String getStatusString() {
     final board = widget.board;

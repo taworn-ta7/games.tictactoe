@@ -13,7 +13,7 @@ class BlockPainter extends CustomPainter {
     if (marker == game.MarkerType.o) {
       // draw O
       var paint = Paint()
-        ..strokeWidth = 8
+        ..strokeWidth = 12
         ..strokeCap = StrokeCap.round
         ..color = Colors.blue
         ..style = PaintingStyle.stroke;
@@ -25,7 +25,7 @@ class BlockPainter extends CustomPainter {
     } else if (marker == game.MarkerType.x) {
       // draw X
       var paint = Paint()
-        ..strokeWidth = 8
+        ..strokeWidth = 12
         ..strokeCap = StrokeCap.round
         ..color = Colors.red;
       var x0 = 0.0;
@@ -37,7 +37,7 @@ class BlockPainter extends CustomPainter {
     } else {
       // draw mark
       var paint = Paint()
-        ..strokeWidth = 8
+        ..strokeWidth = 12
         ..strokeCap = StrokeCap.round
         ..color = Colors.green;
       var x0 = 0.0;
