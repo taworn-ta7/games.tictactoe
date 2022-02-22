@@ -55,8 +55,11 @@
     },
     "beginPage": {
         "title": "โอ-เอ็กซ์",
-        "playerBegin": "ผู้เล่นเริ่มก่อน",
-        "computerBegin": "คอมพิวเตอร์เริ่มก่อน"
+        "startWithO": "O เริ่มก่อน",
+        "startWithX": "X เริ่มก่อน",
+        "playerVsPlayer": "ผู้เล่น สู้กับ ผู้เล่น",
+        "playerVsComputer": "ผู้เล่น สู้กับ คอมพิวเตอร์",
+        "playerVsNetwork": "ผู้เล่น สู้กับ เน็ตเวิร์ค"
     },
     "boardPage": {
         "o": "โอ",

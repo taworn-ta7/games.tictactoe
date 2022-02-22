@@ -3,9 +3,9 @@
  * Generated file. Do not edit.
  *
  * Locales: 2
- * Strings: 100 (50.0 per locale)
+ * Strings: 106 (53.0 per locale)
  *
- * Built on 2022-02-21 at 04:53 UTC
+ * Built on 2022-02-22 at 18:23 UTC
  */
 
 import 'package:flutter/widgets.dart';
@@ -432,8 +432,11 @@ class _StringsBeginPageEn {
 
 	// Translations
 	String get title => 'Tic-Tac-Toe';
-	String get playerBegin => 'Player First';
-	String get computerBegin => 'Computer First';
+	String get startWithO => 'O Start';
+	String get startWithX => 'X Start';
+	String get playerVsPlayer => 'Player vs Player';
+	String get playerVsComputer => 'Player vs Computer';
+	String get playerVsNetwork => 'Player vs Network';
 }
 
 // Path: boardPage
@@ -589,8 +592,11 @@ class _StringsBeginPageTh implements _StringsBeginPageEn {
 
 	// Translations
 	@override String get title => 'โอ-เอ็กซ์';
-	@override String get playerBegin => 'ผู้เล่นเริ่มก่อน';
-	@override String get computerBegin => 'คอมพิวเตอร์เริ่มก่อน';
+	@override String get startWithO => 'O เริ่มก่อน';
+	@override String get startWithX => 'X เริ่มก่อน';
+	@override String get playerVsPlayer => 'ผู้เล่น สู้กับ ผู้เล่น';
+	@override String get playerVsComputer => 'ผู้เล่น สู้กับ คอมพิวเตอร์';
+	@override String get playerVsNetwork => 'ผู้เล่น สู้กับ เน็ตเวิร์ค';
 }
 
 // Path: boardPage
@@ -657,8 +663,11 @@ extension on _StringsEn {
 			'messageBox.question': 'Question',
 			'waitBox.message': 'Please wait...',
 			'beginPage.title': 'Tic-Tac-Toe',
-			'beginPage.playerBegin': 'Player First',
-			'beginPage.computerBegin': 'Computer First',
+			'beginPage.startWithO': 'O Start',
+			'beginPage.startWithX': 'X Start',
+			'beginPage.playerVsPlayer': 'Player vs Player',
+			'beginPage.playerVsComputer': 'Player vs Computer',
+			'beginPage.playerVsNetwork': 'Player vs Network',
 			'boardPage.o': 'O',
 			'boardPage.x': 'X',
 			'boardPage.turn': ({required Object name}) => '$name Turn',
@@ -714,8 +723,11 @@ extension on _StringsTh {
 			'messageBox.question': 'คำถาม',
 			'waitBox.message': 'โปรดรอสักครู่...',
 			'beginPage.title': 'โอ-เอ็กซ์',
-			'beginPage.playerBegin': 'ผู้เล่นเริ่มก่อน',
-			'beginPage.computerBegin': 'คอมพิวเตอร์เริ่มก่อน',
+			'beginPage.startWithO': 'O เริ่มก่อน',
+			'beginPage.startWithX': 'X เริ่มก่อน',
+			'beginPage.playerVsPlayer': 'ผู้เล่น สู้กับ ผู้เล่น',
+			'beginPage.playerVsComputer': 'ผู้เล่น สู้กับ คอมพิวเตอร์',
+			'beginPage.playerVsNetwork': 'ผู้เล่น สู้กับ เน็ตเวิร์ค',
 			'boardPage.o': 'โอ',
 			'boardPage.x': 'เอ็กซ์',
 			'boardPage.turn': ({required Object name}) => 'ตา $name',

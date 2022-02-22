@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import '../i18n/strings.g.dart';
 import '../game/game.dart' as game;
 import '../widgets/message_box.dart';
@@ -8,14 +8,20 @@ import '../widgets/block_painter.dart';
 import '../widgets/border_painter.dart';
 import '../loggings.dart';
 
+enum OpponentType {
+  player,
+  computer,
+  network,
+}
+
 class BoardPage extends StatefulWidget {
   final game.Board board;
-  final bool computerBegin;
+  final OpponentType opponentType;
 
   const BoardPage({
     Key? key,
     required this.board,
-    required this.computerBegin,
+    required this.opponentType,
   }) : super(key: key);
 
   @override
@@ -25,8 +31,8 @@ class BoardPage extends StatefulWidget {
 class _BoardState extends State<BoardPage> {
   static final log = Logger('BoardPage');
 
-  /// Player 2 is computer or not.
-  late bool _isComputerBegin;
+  /// Init timer handler.
+  late Timer _initTimer;
 
   /// AI timer handle.
   Timer? _aiTimer;
@@ -34,23 +40,19 @@ class _BoardState extends State<BoardPage> {
   /// Current status in game.
   String _status = '';
 
-  /// Init timer handler.
-  late Timer _initTimer;
-
   @override
   void initState() {
     super.initState();
-    _isComputerBegin = widget.computerBegin;
-    _status = getStatusString();
     _initTimer = Timer(const Duration(), _handleInit);
+    _status = getStatusString();
     log.fine('${this} initState()');
   }
 
   @override
   void dispose() {
     log.fine('${this} dispose()');
-    _initTimer.cancel();
     _aiTimer?.cancel();
+    _initTimer.cancel();
     super.dispose();
   }
 
@@ -169,19 +171,20 @@ class _BoardState extends State<BoardPage> {
   // ----------------------------------------------------------------------
 
   Future<void> _handleInit() async {
-    if (_isComputerBegin) {
+    if (widget.board.firstMove == game.MarkerType.x) {
+      checkNonHumanTurn();
+    }
+  }
+
+  // ----------------------------------------------------------------------
+
+  void checkNonHumanTurn() {
+    if (widget.opponentType == OpponentType.computer ||
+        widget.opponentType == OpponentType.network) {
       if (widget.board.state == game.StateType.playing) {
         _aiTimer = Timer(const Duration(), handleAi);
       }
     }
-  }
-
-  Future<void> handleAi() async {
-    int move = await game.computerRandom(widget.board);
-    setState(() {
-      widget.board.put(move);
-      _status = getStatusString();
-    });
   }
 
   void putMarker(BuildContext context, int index) {
@@ -189,10 +192,33 @@ class _BoardState extends State<BoardPage> {
       widget.board.put(index);
       _status = getStatusString();
     });
+    checkNonHumanTurn();
+  }
 
-    if (widget.board.state == game.StateType.playing) {
-      _aiTimer = Timer(const Duration(), handleAi);
+  Future<void> handleAi() async {
+    int move = 0;
+    if (widget.opponentType == OpponentType.computer) {
+      // computer move
+      move = await game.computerRandom(widget.board);
+    } else if (widget.opponentType == OpponentType.network) {
+      // network move
+      final first = widget.board.firstMove == game.MarkerType.o ? 1 : 2;
+      final uri = Uri.parse(
+          'http://localhost:8080/ttt?first=$first&history=${widget.board.history}');
+      try {
+        final res = await http.get(uri);
+        final index = int.parse(res.body);
+        log.finest('move next from http: $index');
+        move = index;
+      } catch (ex) {
+        log.finest('error, revert to computer');
+        move = await game.computerRandom(widget.board);
+      }
     }
+    setState(() {
+      widget.board.put(move);
+      _status = getStatusString();
+    });
   }
 
   // ----------------------------------------------------------------------

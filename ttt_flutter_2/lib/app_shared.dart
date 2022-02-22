@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import './loggings.dart';
 import './i18n/strings.g.dart';
-import '../game/game.dart' as game;
 import './app.dart';
 
 /// AppShared singleton class.
@@ -90,9 +89,8 @@ class AppShared {
 
   /// Begin task.
   void begin(
-    BuildContext context, {
-    required game.Board board,
-  }) async {
+    BuildContext context,
+  ) async {
     log.info('begin to system, welcome :)');
   }
 

@@ -55,8 +55,11 @@
     },
     "beginPage": {
         "title": "Tic-Tac-Toe",
-        "playerBegin": "Player First",
-        "computerBegin": "Computer First"
+        "startWithO": "O Start",
+        "startWithX": "X Start",
+        "playerVsPlayer": "Player vs Player",
+        "playerVsComputer": "Player vs Computer",
+        "playerVsNetwork": "Player vs Network"
     },
     "boardPage": {
         "o": "O",

@@ -1,10 +1,10 @@
+enum MarkerType {
+  o,
+  x,
+}
+
 enum StateType {
   playing,
   winner,
   draw,
-}
-
-enum MarkerType {
-  o,
-  x,
 }

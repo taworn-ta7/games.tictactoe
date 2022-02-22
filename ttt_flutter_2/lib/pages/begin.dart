@@ -23,6 +23,7 @@ class _BeginState extends State<BeginPage> {
 
   // widgets
   final _formKey = GlobalKey<FormState>();
+  var _firstMove = game.MarkerType.o;
 
   @override
   void initState() {
@@ -71,7 +72,7 @@ class _BeginState extends State<BeginPage> {
         child: SingleChildScrollView(
           child: Styles.around(
             Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 // title
@@ -85,23 +86,45 @@ class _BeginState extends State<BeginPage> {
                 ),
                 Styles.betweenVerticalBigger(),
 
-                // begin with player
+                // o start
+                RadioListTile<game.MarkerType>(
+                  title: Text(tr.startWithO),
+                  value: game.MarkerType.o,
+                  groupValue: _firstMove,
+                  onChanged: (value) =>
+                      setState(() => _firstMove = value ?? game.MarkerType.o),
+                ),
+                // x start
+                RadioListTile<game.MarkerType>(
+                  title: Text(tr.startWithX),
+                  value: game.MarkerType.x,
+                  groupValue: _firstMove,
+                  onChanged: (value) =>
+                      setState(() => _firstMove = value ?? game.MarkerType.x),
+                ),
+                Styles.betweenVerticalBigger(),
+
+                // player vs player
                 ElevatedButton.icon(
                   icon: const Icon(Icons.gamepad),
-                  label: Styles.buttonPadding(Text(tr.playerBegin)),
-                  onPressed: () {
-                    _begin();
-                  },
+                  label: Styles.buttonPadding(Text(tr.playerVsPlayer)),
+                  onPressed: () => _begin(type: OpponentType.player),
                 ),
                 Styles.betweenVertical(),
 
-                // begin with computer
+                // player vs computer
+                ElevatedButton.icon(
+                  icon: const Icon(Icons.computer),
+                  label: Styles.buttonPadding(Text(tr.playerVsComputer)),
+                  onPressed: () => _begin(type: OpponentType.computer),
+                ),
+                Styles.betweenVertical(),
+
+                // player vs net
                 ElevatedButton.icon(
                   icon: const Icon(Icons.casino),
-                  label: Styles.buttonPadding(Text(tr.computerBegin)),
-                  onPressed: () {
-                    _begin(computerBegin: true);
-                  },
+                  label: Styles.buttonPadding(Text(tr.playerVsNetwork)),
+                  onPressed: () => _begin(type: OpponentType.network),
                 ),
               ],
             ),
@@ -113,16 +136,16 @@ class _BeginState extends State<BeginPage> {
 
   // ----------------------------------------------------------------------
 
-  Future<void> _begin({bool computerBegin = false}) async {
+  Future<void> _begin({required OpponentType type}) async {
     // enter system
-    AppShared.instance().begin(context, board: game.Board());
+    AppShared.instance().begin(context);
 
     // switch page
     await Pages.switchPage(
       context,
       BoardPage(
-        board: game.Board(),
-        computerBegin: computerBegin,
+        board: game.Board(firstMove: _firstMove),
+        opponentType: type,
       ),
     );
   }

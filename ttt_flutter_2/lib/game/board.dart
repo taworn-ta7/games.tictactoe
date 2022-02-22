@@ -13,7 +13,18 @@ class Board {
   /// Total size, boardSize * boardSize.
   static const int totalSize = boardSize * boardSize;
 
-  /// Current move data.
+  /// Player first move: o or x.
+  final MarkerType firstMove;
+
+  /// Current marker, also use to indicate winner if state = winner.
+  MarkerType _marker = MarkerType.o;
+  MarkerType get marker => _marker;
+
+  /// Current state: playing, winner or draw.
+  StateType _state = StateType.playing;
+  StateType get state => _state;
+
+  /// Move data.
   final List<MarkerType?> moves = <MarkerType?>[
     null,
     null,
@@ -26,37 +37,42 @@ class Board {
     null,
   ];
 
-  /// Current state: playing, have winner or draw.
-  StateType state = StateType.playing;
+  /// History data.
+  String _history = "";
+  String get history => _history;
 
-  /// Current marker or winner.
-  MarkerType marker = MarkerType.o;
-
-  Board();
+  /// Constructor.
+  Board({
+    required this.firstMove,
+  }) {
+    _marker = firstMove;
+  }
 
   // ----------------------------------------------------------------------
 
+  /// Put current marker into board.
   void put(int index) {
-    assert(state == StateType.playing);
+    assert(_state == StateType.playing);
     assert(index >= 0 && index < totalSize);
     assert(moves[index] == null);
 
     // move current
-    moves[index] = marker;
+    moves[index] = _marker;
+    _history += index.toString();
 
     // update state
     if (_checkVictoryState()) {
       // current player is winner
-      state = StateType.winner;
+      _state = StateType.winner;
     } else if (_checkDrawState()) {
       // no more moves, both players draw
-      state = StateType.draw;
+      _state = StateType.draw;
     } else {
       // next player
-      if (marker == MarkerType.o) {
-        marker = MarkerType.x;
+      if (_marker == MarkerType.o) {
+        _marker = MarkerType.x;
       } else {
-        marker = MarkerType.o;
+        _marker = MarkerType.o;
       }
     }
   }
@@ -66,40 +82,40 @@ class Board {
   bool _checkYVictory(int y) {
     int x = 0;
     while (x < boardSize) {
-      if (moves[y * boardSize + x] != marker) return false;
+      if (moves[y * boardSize + x] != _marker) return false;
       x++;
     }
-    log.info('$marker win with y=$y');
+    log.info('$_marker win with y=$y');
     return true;
   }
 
   bool _checkXVictory(int x) {
     int y = 0;
     while (y < boardSize) {
-      if (moves[y * boardSize + x] != marker) return false;
+      if (moves[y * boardSize + x] != _marker) return false;
       y++;
     }
-    log.info('$marker win with x=$x');
+    log.info('$_marker win with x=$x');
     return true;
   }
 
   bool _checkDiagonalVictory0() {
     int i = 0;
     while (i < boardSize) {
-      if (moves[i * boardSize + i] != marker) return false;
+      if (moves[i * boardSize + i] != _marker) return false;
       i++;
     }
-    log.info('$marker win with direct diagonal');
+    log.info('$_marker win with direct diagonal');
     return true;
   }
 
   bool _checkDiagonalVictory1() {
     int i = 0;
     while (i < boardSize) {
-      if (moves[i * boardSize + (boardSize - i - 1)] != marker) return false;
+      if (moves[i * boardSize + (boardSize - i - 1)] != _marker) return false;
       i++;
     }
-    log.info('$marker win with reverse diagonal');
+    log.info('$_marker win with reverse diagonal');
     return true;
   }
 

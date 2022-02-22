@@ -16,8 +16,8 @@ class BorderPainter extends CustomPainter {
     double y0 = 0.0;
     double x1 = x0 + size.width;
     double y1 = y0 + size.height;
-    double distanceX = 8;
-    double distanceY = 8;
+    double distanceX = 20;
+    double distanceY = 20;
 
     int x = index % game.Board.boardSize;
     int y = index ~/ game.Board.boardSize;
@@ -41,7 +41,7 @@ class BorderPainter extends CustomPainter {
     }
 
     final paint = Paint()
-      ..strokeWidth = 8
+      ..strokeWidth = 12
       ..strokeCap = StrokeCap.round
       ..color = Colors.grey;
     if (left) {
