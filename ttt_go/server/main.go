@@ -5,6 +5,7 @@ import (
 )
 
 func main() {
+	gin.ForceConsoleColor()
 	router := gin.Default()
 	router.GET("/ttt", getNext)
 	router.Run("localhost:8080")
