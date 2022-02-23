@@ -132,6 +132,6 @@ func main() {
 			fmt.Printf("%v Win Y_Y\n", BoardDataToOX(board.Current))
 		}
 	} else {
-		fmt.Printf("Draw -_-")
+		fmt.Printf("Draw -_-\n")
 	}
 }
